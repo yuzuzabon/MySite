@@ -63,9 +63,11 @@
       <div class="row">
         <div class="col-md-12">
           <form action="" method="post" th:object="${item}">
+
+						<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger w-100 py-2 mb-2 rounded"></p>
             <div class="form-group mb-3">
               <label for="formName">品名</label>
-							<span th:errors="*{name}" class="error"></span>
+
               <input
                 type="text"
                 th:field="*{name}"
@@ -73,9 +75,10 @@
                 class="form-control"
               />
             </div>
+						<p th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="alert alert-danger w-100 py-2 mb-2 rounded"></p>
+
             <div class="form-group mb-3">
               <label for="formAmount">数量</label>
-							<span th:errors="*{amount}" class="error"></span>
 							<input
                 type="text"
                 th:field="*{amount}"
