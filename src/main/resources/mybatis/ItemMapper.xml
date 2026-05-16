@@ -19,7 +19,7 @@
 	insert into items
 		(name,amount,location_id,note,registered)
 		values
-		(#{name},#{amount},#{location.id},#{note},now()))
+		(#{name},#{amount},#{location.id},#{note},now())
 </insert>
 
 
