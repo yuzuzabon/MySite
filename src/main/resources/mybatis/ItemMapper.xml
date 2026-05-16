@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  -->
+<mapper namespace="com.example.app.mapper.ItemMapper">
+	<resultMap id="itemMap" type="com.example.app.domain.Item">
+	<id column="id" property="id" />
+	<result column="name" property="name" />
+	<result column="amount" property="amount" />
+	<result column="locations_name" property="location.name" />
+
+	</resultMap>
+
+<select id="selectAll" resultMap="itemMap">
+	select items.id,items.name,amount,locations.name as locations_name ,note,registered,updated from items join locations on items.location_id=locations.id order by registered desc
+</select>
+
+
+<insert id="insert" parameterType="Item">
+	insert into items
+		(name,amount,location_id,note,registered)
+		values
+		(#{name},#{amount},#{location.id},#{note},now()))
+</insert>
+
+
+</mapper>
