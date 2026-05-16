@@ -32,15 +32,17 @@ public class ItemController {
 			System.out.println(items);
 			model.addAttribute("items",items);
 			model.addAttribute("title","備品リスト");
+			System.out.println("getitem");
 			return "list";
 
 		}
 		@GetMapping("/add")
 		public String showAddForm(Model model) {
 		model.addAttribute("title", "備品の登録");
-		model.addAttribute("items", new Item());
+		model.addAttribute("item", new Item());
 		model.addAttribute("locations", service.getItemLocations());
 		System.out.println(service.getItemLocations());
+		System.out.println("getadd");
 		return "save";
 		}
 
@@ -49,15 +51,23 @@ public class ItemController {
 					@Valid Item item,Errors errors,
 					RedirectAttributes rd,
 					Model model) {
-					model.addAttribute("items", new Item());
+					//model.addAttribute("items", new Item());
+					System.out.println("post");
+
+			if(errors.hasErrors()) {
+				System.out.println("エラー内容："+errors.getAllErrors());
+			}
+
 
 			if(errors.hasErrors()) {
 					model.addAttribute("title","備品の登録");
 					model.addAttribute("locations",service.getItemLocations());
+					System.out.println("postNG");
 					return "save";
 			}
 			service.addItem(item);
 			rd.addFlashAttribute("statusMessage", "備品を登録しました。");
+			System.out.println("postok");
 			return "redirect:/items";
 		}
 
