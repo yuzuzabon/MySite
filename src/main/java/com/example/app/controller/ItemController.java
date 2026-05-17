@@ -72,7 +72,7 @@ public class ItemController {
 			return "redirect:/items";
 		}
 		@GetMapping("/detail/{id}")
-		public String getItemById(@PathVariable Integer id,
+		public String showItemDetail(@PathVariable Integer id,
 															Model model) {
 	    						Item item = service.getItemById(id);
 	   if (item == null) {
@@ -86,12 +86,28 @@ public class ItemController {
 			return "detail";
 		}
 		@GetMapping("/delete/{id}")
-		public String delete(@PathVariable Integer id,
+		public String deleteItem(@PathVariable Integer id,
 						RedirectAttributes rd) {
 				service.deleteItem(id);
 				rd.addFlashAttribute("statusMessage", "備品を削除しました");
 				return "redirect:/items";
 		}
+		@GetMapping("/edit/{id}")
+		public String showEditForm(
+					@PathVariable Integer id,
 
+					RedirectAttributes rd,
+					Model model) {
+				model.addAttribute("title","備品情報の編集");
+				model.addAttribute("item",service.getItemById(id));
+				//model.addAttribute("item", new Item());
+				model.addAttribute("locations", service.getItemLocations());
+				Item item = service.getItemById(id);
+				System.out.println("取得した場所のID: " + (item.getLocation() != null ? item.getLocation().getId() : "NULLです！"));
+				model.addAttribute("item", item);
+
+
+				return "edit";
+		}
 
 }

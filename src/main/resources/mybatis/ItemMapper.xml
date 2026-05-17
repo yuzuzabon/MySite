@@ -40,5 +40,12 @@
 
 </delete>
 
+<update id="update" parameterType="Item">
+	update items
+	set name=#{name},amount=#{amount},location_id=#{location.id},
+	note=#{note},updated=now()
+</update>
+
+
 
 </mapper>
