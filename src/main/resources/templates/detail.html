@@ -10,7 +10,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="">備品管理システム</a>
+        <a class="navbar-brand" href="/items">備品管理システム</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -59,8 +59,14 @@
       <!-- /.container -->
     </nav>
     <div class="container mt-5">
-      <h1>[[${item.name}]]</h1>
+			<div th:if="${statusMessage}" class="alert alert-danger mt-4">
+			        [[${statusMessage}]]
+			</div>
+			<div th:if="${item}">
+      	<h1>[[${item.name}]]</h1>
+			</div>
       <a class="btn btn-primary my-3" th:href="@{/items}">備品リストに戻る</a>
+			<div th:if="${item}">
       <div class="row">
         <div class="col-md-12">
           <table class="table table-bordered table-hover detail-table">
@@ -98,6 +104,7 @@
         <a id="delete" class="btn btn-danger" th:href="@{/delete/{id}(id=${item.id})}">削除</a>
       </div>
     </div>
+			</div>
     <!-- /.container -->
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
     <script>

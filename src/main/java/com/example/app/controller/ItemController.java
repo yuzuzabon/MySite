@@ -74,9 +74,16 @@ public class ItemController {
 		@GetMapping("/detail/{id}")
 		public String getItemById(@PathVariable Integer id,
 															Model model) {
+	    						Item item = service.getItemById(id);
+	   if (item == null) {
+	   	model.addAttribute("statusMessage", "お探しの備品は存在しません");
+	   	model.addAttribute("title","備品管理");
+	   	System.out.println("備品は存在しません");
+	   	return "detail";
+	  }
 			model.addAttribute("title","備品管理");
 			model.addAttribute("item",service.getItemById(id));
-			return "/detail";
+			return "detail";
 		}
 
 
