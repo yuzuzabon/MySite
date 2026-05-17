@@ -59,7 +59,10 @@
       <!-- /.container -->
     </nav>
     <div class="container mt-5">
-      <h1>[[${title}]]</h1>
+      <div th:if="${statusMessage}" class="alert alert-success mt-4">
+				[[${statusMessage}]]
+			</div>
+			<h1>[[${title}]]</h1>
       <a class="btn btn-primary my-3" th:href="@{/items/add}">備品の追加</a>
       <div class="row">
         <div class="col-md-12">
