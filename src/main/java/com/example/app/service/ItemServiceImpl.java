@@ -40,6 +40,7 @@ public class ItemServiceImpl implements ItemService{
 		@Override
 		public void deleteItem(Integer id) {
 			// TODO 自動生成されたメソッド・スタブ
+			itemMapper.delete(id);
 
 		}
 

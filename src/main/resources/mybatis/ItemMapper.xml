@@ -35,6 +35,10 @@
 	where items.id = #{id}
 </select>
 
+<delete id="delete" parameterType="int">
+	delete from items where id = #{id}
+
+</delete>
 
 
 </mapper>

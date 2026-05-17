@@ -67,7 +67,7 @@ public class ItemController {
 					return "save";
 			}
 			service.addItem(item);
-			rd.addFlashAttribute("statusMessage", "備品を登録しました。");
+			rd.addFlashAttribute("statusMessage", "備品を追加しました。");
 			System.out.println("postok");
 			return "redirect:/items";
 		}
@@ -85,7 +85,13 @@ public class ItemController {
 			model.addAttribute("item",service.getItemById(id));
 			return "detail";
 		}
-
+		@GetMapping("/delete/{id}")
+		public String delete(@PathVariable Integer id,
+						RedirectAttributes rd) {
+				service.deleteItem(id);
+				rd.addFlashAttribute("statusMessage", "備品を削除しました");
+				return "redirect:/items";
+		}
 
 
 }

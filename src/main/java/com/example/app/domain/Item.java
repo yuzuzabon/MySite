@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class Item {
 
-		@NotNull
+
 		private Integer id;
 
 		@NotBlank
