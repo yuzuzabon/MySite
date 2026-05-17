@@ -11,7 +11,11 @@
 	</resultMap>
 
 <select id="selectAll" resultMap="itemMap">
-	select items.id,items.name,amount,locations.name as locations_name ,note,registered,updated from items join locations on items.location_id=locations.id order by registered desc
+	select
+	items.id,items.name,amount,locations.name as locations_name ,
+	note,registered,updated
+	from items join locations on items.location_id=locations.id
+	order by registered desc
 </select>
 
 
@@ -21,6 +25,16 @@
 		values
 		(#{name},#{amount},#{location.id},#{note},now())
 </insert>
+
+<select id="selectById" parameterType="int" resultMap="itemMap">
+	select
+	items.id,items.name,amount,locations.name as locations_name ,
+	note,registered,updated
+	from items join locations on items.location_id=locations.id
+
+	where items.id = #{id}
+</select>
+
 
 
 </mapper>
