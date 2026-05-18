@@ -7,12 +7,13 @@
 	<result column="name" property="name" />
 	<result column="amount" property="amount" />
 	<result column="locations_name" property="location.name" />
+	<result column="location_id" property="location.id" />
 
 	</resultMap>
 
 <select id="selectAll" resultMap="itemMap">
 	select
-	items.id,items.name,amount,locations.name as locations_name ,
+	items.id,items.name,amount,location_id,locations.name as locations_name ,
 	note,registered,updated
 	from items join locations on items.location_id=locations.id
 	order by registered desc
@@ -28,7 +29,7 @@
 
 <select id="selectById" parameterType="int" resultMap="itemMap">
 	select
-	items.id,items.name,amount,locations.name as locations_name ,
+	items.id,items.name,amount,location_id,locations.name as locations_name ,
 	note,registered,updated
 	from items join locations on items.location_id=locations.id
 

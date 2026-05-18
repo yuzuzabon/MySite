@@ -102,11 +102,9 @@ public class ItemController {
 				model.addAttribute("item",service.getItemById(id));
 				//model.addAttribute("item", new Item());
 				model.addAttribute("locations", service.getItemLocations());
-				Item item = service.getItemById(id);
-				System.out.println("取得した場所のID: " + (item.getLocation() != null ? item.getLocation().getId() : "NULLです！"));
-				model.addAttribute("item", item);
-
-
+				
+				System.out.println(service.getItemById(id));
+				
 				return "edit";
 		}
 
